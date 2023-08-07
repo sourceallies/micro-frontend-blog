@@ -1,0 +1,22 @@
+{
+  "name": "lit-micro-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.4.8",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.8"
+  },
+  "dependencies": {
+    "lit": "^2.8.0"
+  }
+}
