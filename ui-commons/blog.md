@@ -25,7 +25,7 @@ Instead, this post lays out a strategy to provide a common style across multiple
 I spoke to [Jenn McMillion], one of our UI/UX experts here at Source Allies, and asked her to come up with a simple example style guide for a fictional company.
 She quickly responded with the following, which is very similiar to what we often see various UI designers produce for development teams:
 
-STYLE GUIDE IMAGE HERE
+![image](styleguide.png)
 
 In order to support our common styles, we will start by spinning up a new npm project that we will staticly serve and use to host the common assets shared between applications.
 Unlike an NPM library, every refresh of a users browser will pull the latest copy of shared assets.
