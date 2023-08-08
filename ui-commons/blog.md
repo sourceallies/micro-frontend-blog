@@ -2,7 +2,7 @@
 One of the main advantages of choosing a micro-service architecture for the services that back a company's web application is to allow multiple teams to independently own components of the system. 
 These components can choose different tech stacks, architecture choices, and deploy features and updates on different schedules.
 
-When it comes to the frontend however, these same organizations will often deploy a single Javascript code base to be the UI for a large part of the companies functionality.
+When it comes to the frontend however, these same organizations will often deploy a single Javascript code base to be the UI for a large part of the company's functionality.
 In doing this, the cadence of feature releases, bug fixes, updates, and software choices are tightly coupled between teams.
 Breaking up the frontend brings with it additional challenges.
 Each logical area must appear to the end users as a cohesive experiance. It must be consistent in styling, coloring and functionality. 
@@ -17,25 +17,25 @@ Secondly, because these libraries are included at build time into each applicati
 If a change is desired that spans across all applications, such as changing a social icon from an animal to a letter, a new version has to be released and deployed in all applications.
 These deploys will most likely not take place concurrently, so users will see an inconsistant view of these components as they navigate between pages.
 
-The above downsides can be avoided by throwing money, dicipline, and planning at the problem.
-Instead, this post lays out a strategy to provide a common style across multiple disconnected applications without forcing techincal or planning decisions of the individual teams.
+The above downsides can of course be avoided by throwing money, discipline, and planning at the problem.
+This post lays out an alternate strategy to provide a common style across multiple disconnected applications without forcing technical or planning decisions of the individual teams.
 
 ### The Style Guide
 
-I spoke to [Jenn McMillion], one of our UI/UX experts here at Source Allies, and asked her to come up with a simple example style guide for a fictional company.
+I spoke to [Jenn M], one of our UI/UX experts here at Source Allies, and asked her to come up with a simple example style guide for a fictional company.
 She quickly responded with the following, which is very similiar to what we often see various UI designers produce for development teams:
 
 ![image](styleguide.png)
 
-In order to support our common styles, we will start by spinning up a new npm project that we will staticly serve and use to host the common assets shared between applications.
+In order to support our common styles, we will start by spinning up a new NPM project that we will statically serve and use to host the common assets shared between applications.
 Unlike an NPM library, every refresh of a users browser will pull the latest copy of shared assets.
-And, since all of the applications will use the same URL for those assets, we the browser cache will stay consistant.
+And, since all of the applications will use the same URL for those assets, the browser cache will stay consistant.
 
 ### Common Company Colors
 
-Every brand has a color pallet that defines the specific colors that should be used for various parts of site.
+Every brand has a color palette that defines the specific colors that should be used for various parts of site.
 They rarely change, but if a developer is off by even a couple points then users will notice something is "off" as they navigate around.
-The simplest way to share these across applications is to simply create a CSS file `styles.css` and include a set of [CSS custom varialbe declarations]() for these colors:
+The simplest way to share these across applications is to simply create a CSS file `styles.css` and include a set of [CSS custom variable declarations]() for these colors:
 
 ```css
 :root {
@@ -83,9 +83,9 @@ nav {
 }
 ```
 
-In this example we are setting the default font-famly for the entire page.
+In this example we are setting the default font-family for the entire page.
 We are also adding another API to our contract, we are defining the font styling for the `h1`, `h2`, `h3`, and `nav` elements. 
-We must be careful here.
+Be careful here;
 While it is tempting to define styling for a large number of elements, we do not know the context that those elments are used in. 
 One of the big killers of internal UI libraries is making a lot of assumptions about how components will be used and then having an explosion of complexity as countless flags and parameters have to be added to handle the scenerios.
 Instead, focus on a few elements that are very consistantly used.
@@ -93,7 +93,7 @@ Instead, focus on a few elements that are very consistantly used.
 ### Buttons and Other Native Components
 
 Instead of styling the plain `button` element, we are forcing the applications to opt-in to the button styling by defining classes (`sai-primary-button` and `sai-secondary-button`).
-This way, if an application adds a button element for symantic resions or needs to style it another way they do not have to "undo" all of the common styling. 
+This way, if an application adds a button element for semantic reasons or needs to style it another way they do not have to "undo" all of the common styling. 
 
 ```CSS
 .sai-primary-button, .sai-secondary-button {
@@ -136,8 +136,8 @@ This way, if an application adds a button element for symantic resions or needs 
 
 So far, we have been able to support a common style guide across applications while only relying on native web technologies (CSS).
 We have not forced the applications to do anything other than include a stylesheet and use classes and variable references on things as appropriate.
-Some parts of our site require not only a consistant style, but also consistent behavior.
-For these components we need Javascript to support these components.
+Some parts of our site require not only a consistent style, but also consistent behavior.
+We need Javascript to support these components.
 
 [Web Components]() is a collection of web standards that allow us to define custom elements and then include them within a hosting page.
 We can leverage this technology to create a `sai-header` or `sai-footer` custom element.
@@ -146,7 +146,7 @@ Additionally, custom web components use a [shadow dom]() to ensure that the styl
 
 The downside is that web components are somewhat complicated to create and don't lend themselves well to a reactive programming model.
 To aid in this we can leverage a newer library called [Lit](). 
-This is a very small library that allows us to define a component along with a lifecycle for updating that component as things changes (such as users clicking on menus or getting signed in).
+This is a very small library that allows us to define a component along with a lifecycle for updating that component as things change (such as users clicking on menus or getting signed in).
 
 Refer to the [Lit Documentation]() for a complete reference. 
 For our custom header we create a `header.ts` file with the following:
@@ -220,7 +220,6 @@ The custom component can raise events and these can be received by the host page
 
 ### Conclusion
 
-Hopefully, this brief post will lay out a simple, but powerful strategy to share common UI components and functionality between teams and applications without incuring a massive cost of maintance or introducing large amounts of technical debt.
-Teams can now develop their applications using the technology of their choice, on the release cadance that works for them. 
+Technical teams can now develop their applications using the technology of their choice, on the release cadence that works for them.
 The UI team can own and provide the standards needed to ensure a consistent brand.
-And, the only technical constraint is based around native web standards that all modern browsers support.
+This is a simple, but powerful strategy to share common UI components and functionality between teams and applications without incurring a massive cost of maintenance or introducing large amounts of technical debt, with the only constraint based around native web standards that all modern browsers support.
