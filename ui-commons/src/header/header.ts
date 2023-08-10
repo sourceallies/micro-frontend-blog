@@ -1,11 +1,15 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import logoImage from './source-allies-logo-final.png';
+import twitterImage from './twitter.png';
+import instagramImage from './instagram.png';
+import facebookImage from './facebook.png';
+import linkedInImage from './linkedin.png';
 
 @customElement("sai-header")
-export class Header extends LitElement {
+export default class Header extends LitElement {
     static styles = css`
-        @import url("/brand.css");   
+        @import url("/styles.css");   
         :host {
             width: 100vw;
             display: block;
@@ -46,15 +50,20 @@ export class Header extends LitElement {
         }
     `;
 
+    buildSocialIcon(imagePath: string) {
+        const imgUrl = new URL(imagePath, import.meta.url).href;
+        return html`<li><img src=${imgUrl} /></li>`;
+    }
+
     render() {
         const imgUrl = new URL(logoImage, import.meta.url).href;
         return html`
             <header>
                 <ul class="social-icons">
-                    <li>Twitter</li>
-                    <li>Insta</li>
-                    <li>Face</li>
-                    <li>LI</li>
+                    ${this.buildSocialIcon(twitterImage)}
+                    ${this.buildSocialIcon(instagramImage)}
+                    ${this.buildSocialIcon(facebookImage)}
+                    ${this.buildSocialIcon(linkedInImage)}
                 </ul>
                 <ul class="contact-info">
                     <li>Company Name</li>
