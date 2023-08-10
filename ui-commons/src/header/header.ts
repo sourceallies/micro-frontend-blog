@@ -1,10 +1,11 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import logoImage from './source-allies-logo-final.png';
-import twitterImage from './twitter.png';
-import instagramImage from './instagram.png';
-import facebookImage from './facebook.png';
-import linkedInImage from './linkedin.png';
+// import twitterImage from './twitter.png';
+// import instagramImage from './instagram.png';
+// import facebookImage from './facebook.png';
+// import linkedInImage from './linkedin.png';
+import "../social-icons/social-icons";
 
 @customElement("sai-header")
 export default class Header extends LitElement {
@@ -59,12 +60,7 @@ export default class Header extends LitElement {
         const imgUrl = new URL(logoImage, import.meta.url).href;
         return html`
             <header>
-                <ul class="social-icons">
-                    ${this.buildSocialIcon(twitterImage)}
-                    ${this.buildSocialIcon(instagramImage)}
-                    ${this.buildSocialIcon(facebookImage)}
-                    ${this.buildSocialIcon(linkedInImage)}
-                </ul>
+                <sai-social-icons></sai-social-icons>
                 <ul class="contact-info">
                     <li>Company Name</li>
                     <li>1234 Fake Main St. Urbandale, IA 50322</li>
