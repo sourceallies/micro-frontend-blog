@@ -199,7 +199,7 @@ Images, and other assets can be referenced relative to this component and includ
 The usage for the individual applications is similar to the styling. 
 Each application includes a reference to where our style guide is deployed:
 ```html
-<script type="module" src="https://example.com/style-guide/header/header.ts"></script>
+<script type="module" src="https://style-guide.example.com/style-guide.js"></script>
 ```
 
 They then just include the common header like any other element:
@@ -223,3 +223,4 @@ The custom component can raise events and these can be received by the host page
 Technical teams can now develop their applications using the technology of their choice, on the release cadence that works for them.
 The UI team can own and provide the standards needed to ensure a consistent brand.
 This is a simple, but powerful strategy to share common UI components and functionality between teams and applications without incurring a massive cost of maintenance or introducing large amounts of technical debt, with the only constraint based around native web standards that all modern browsers support.
+We encourge you to visit [Github Repository](https://github.com/sourceallies/micro-frontend-blog) for a complete example of the above.
