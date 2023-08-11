@@ -35,7 +35,7 @@ And, since all of the applications will use the same URL for those assets, the b
 
 Every brand has a color palette that defines the specific colors that should be used for various parts of site.
 They rarely change, but if a developer is off by even a couple points then users will notice something is "off" as they navigate around.
-The simplest way to share these across applications is to simply create a CSS file `styles.css` and include a set of [CSS custom variable declarations]() for these colors:
+The simplest way to share these across applications is to simply create a CSS file `styles.css` and include a set of [CSS custom variable declarations](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) for these colors:
 
 ```css
 :root {
@@ -139,16 +139,16 @@ We have not forced the applications to do anything other than include a styleshe
 Some parts of our site require not only a consistent style, but also consistent behavior.
 We need Javascript to support these components.
 
-[Web Components]() is a collection of web standards that allow us to define custom elements and then include them within a hosting page.
+[Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) are a collection of web standards that allow us to define custom elements and then include them within a hosting page.
 We can leverage this technology to create a `sai-header` or `sai-footer` custom element.
 The individual applications can then put this at the top and bottom of each page regardless of what UI framework they are utilizing.
-Additionally, custom web components use a [shadow dom]() to ensure that the styling of the hosting page does not bleed over into the component styling.
+Additionally, custom web components use a [shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM) to ensure that the styling of the hosting page does not bleed over into the component styling.
 
 The downside is that web components are somewhat complicated to create and don't lend themselves well to a reactive programming model.
-To aid in this we can leverage a newer library called [Lit](). 
+To aid in this we can leverage a newer library called [Lit](https://lit.dev). 
 This is a very small library that allows us to define a component along with a lifecycle for updating that component as things change (such as users clicking on menus or getting signed in).
 
-Refer to the [Lit Documentation]() for a complete reference. 
+Refer to the [Lit Documentation](https://lit.dev/docs/) for a complete reference. 
 For our custom header we create a `header.ts` file with the following:
 
 ```typescript
@@ -191,7 +191,7 @@ export class Header extends LitElement {
 }
 ```
 
-Refer to our [Github Repository]() for the complete file.
+Refer to our [Github Repository](https://github.com/sourceallies/micro-frontend-blog) for the complete file.
 This file exports a single custom web component.
 Notice how we are importing our `styles.css` file at the top and then leveraging the color variables to ensure we align with the company colors.
 Images, and other assets can be referenced relative to this component and included as well.
@@ -205,12 +205,12 @@ Each application includes a reference to where our style guide is deployed:
 They then just include the common header like any other element:
 ```HTML
 <body>
-    <sai-header />
+    <sai-header></sai-header>
     <main>
         <h1>Page Tilte</h1>
         ...
     </main>
-    <sai-footer />
+    <sai-footer></sai-footer>
 </body>
 ```
 
